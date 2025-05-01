@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>João Guedes | IT Lead Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -27,15 +28,24 @@
       background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
       text-align: center;
       padding: 2rem;
+      transform-style: preserve-3d;
     }
     header h1 {
       font-size: 3rem;
       font-weight: 700;
       margin-bottom: 1rem;
+      transition: transform 0.3s ease;
     }
     header p {
       font-size: 1.2rem;
       max-width: 600px;
+      transition: transform 0.3s ease;
+    }
+    header:hover h1 {
+      transform: scale(1.05);
+    }
+    header:hover p {
+      transform: translateY(-5px);
     }
     nav {
       position: sticky;
@@ -52,16 +62,16 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s;
     }
     nav a:hover {
       color: #00bcd4;
+      transform: scale(1.1);
     }
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
       margin: auto;
-      animation: fadeIn 1s ease-in;
     }
     h2 {
       font-size: 2rem;
@@ -74,6 +84,11 @@
       margin-bottom: 2rem;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba(0, 188, 212, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 188, 212, 0.3);
     }
     .project h3 {
       margin-bottom: 0.5rem;
@@ -93,15 +108,15 @@
       text-align: center;
       padding: 2rem;
       margin-top: 4rem;
+      transition: background 0.3s;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    footer:hover {
+      background: #1c1c1c;
     }
   </style>
 </head>
 <body>
-  <header>
+  <header data-aos="fade-in">
     <h1>João Guedes</h1>
     <p>Lead Developer na Siemens | Especialista em Low-Code, Integração de Sistemas e Arquitetura de Soluções</p>
   </header>
@@ -113,25 +128,25 @@
     <a href="#swot">SWOT</a>
   </nav>
 
-  <section id="sobre">
+  <section id="sobre" data-aos="fade-up">
     <h2>Sobre Mim</h2>
     <p>Sou um IT Lead Developer com impacto global na Siemens, liderando soluções empresariais com foco em escalabilidade, performance e valor de negócio. Estou a concluir a Licenciatura em Engenharia Informática na Universidade Lusófona e tenho uma forte vocação por tecnologia, liderança e inovação. Especializado em Mendix, integrações complexas (REST/SOAP), automação e DevOps.</p>
   </section>
 
-  <section id="portefolio">
+  <section id="portefolio" data-aos="fade-up">
     <h2>Projetos em Destaque</h2>
-    <div class="project">
+    <div class="project" data-aos="fade-right">
       <h3>SkillHunt</h3>
       <p>Plataforma gamificada de recrutamento técnico. Inclui sistema de XP, desafios validados por feedback social e integração com LinkedIn/GitHub para scoring automático de skills.</p>
       <a href="https://github.com/joaoguedes/skillhunt" target="_blank">Ver código</a>
     </div>
-    <div class="project">
+    <div class="project" data-aos="fade-left">
       <h3>Radar de Barcos (LP1)</h3>
       <p>Projeto académico em C para deteção de padrões em matrizes radar. Aborda lógica algorítmica sem ponteiros, ideal para ensino introdutório.</p>
     </div>
   </section>
 
-  <section id="links">
+  <section id="links" data-aos="fade-up">
     <h2>Documentos Relevantes</h2>
     <p><a href="LINK_PARA_CV" target="_blank">Resume (CV)</a></p>
     <p><a href="LINK_PARA_CARTA" target="_blank">Carta de Apresentação</a></p>
@@ -139,7 +154,7 @@
     <p><a href="https://www.youtube.com/watch?v=LINK_DO_VIDEO" target="_blank">Vídeo CV</a></p>
   </section>
 
-  <section id="swot">
+  <section id="swot" data-aos="fade-up">
     <h2>Análise SWOT</h2>
     <ul>
       <li><strong>Forças:</strong> Liderança técnica, comunicação clara, impacto real em projetos multinacionais.</li>
@@ -149,8 +164,17 @@
     </ul>
   </section>
 
-  <footer>
+  <footer data-aos="fade-in">
     <p>&copy; 2025 João Guedes – Criado com foco em excelência e impacto</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: false
+    });
+  </script>
 </body>
 </html>
