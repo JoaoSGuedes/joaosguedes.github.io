@@ -20,32 +20,21 @@
       line-height: 1.6;
     }
     header {
-      height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+      background: #111;
       text-align: center;
-      padding: 2rem;
-      transform-style: preserve-3d;
+      padding: 4rem 2rem 2rem;
     }
     header h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
-      transition: transform 0.3s ease;
     }
     header p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      transition: transform 0.3s ease;
-    }
-    header:hover h1 {
-      transform: scale(1.05);
-    }
-    header:hover p {
-      transform: translateY(-5px);
+      font-size: 1.1rem;
+      max-width: 700px;
     }
     nav {
       position: sticky;
@@ -113,6 +102,13 @@
     footer:hover {
       background: #1c1c1c;
     }
+    img.profile {
+      max-width: 180px;
+      border-radius: 50%;
+      margin: 2rem auto;
+      display: block;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -130,6 +126,7 @@
 
   <section id="sobre" data-aos="fade-up">
     <h2>Sobre Mim</h2>
+    <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Foto de João Guedes" class="profile">
     <p>Sou um IT Lead Developer com impacto global na Siemens, liderando soluções empresariais com foco em escalabilidade, performance e valor de negócio. Estou a concluir a Licenciatura em Engenharia Informática na Universidade Lusófona e tenho uma forte vocação por tecnologia, liderança e inovação. Especializado em Mendix, integrações complexas (REST/SOAP), automação e DevOps.</p>
   </section>
 
@@ -148,10 +145,10 @@
 
   <section id="links" data-aos="fade-up">
     <h2>Documentos Relevantes</h2>
-    <p><a href="LINK_PARA_CV" target="_blank">Resume (CV)</a></p>
-    <p><a href="LINK_PARA_CARTA" target="_blank">Carta de Apresentação</a></p>
+    <p><a href="https://joaosguedes.github.io/JoaoGuedes_CV.pdf" target="_blank">Resume (CV)</a></p>
+    <p><a href="https://joaosguedes.github.io/CartaApresentacao.pdf" target="_blank">Carta de Apresentação</a></p>
     <p><a href="https://www.linkedin.com/in/joaoguedes" target="_blank">Perfil LinkedIn</a></p>
-    <p><a href="https://www.youtube.com/watch?v=LINK_DO_VIDEO" target="_blank">Vídeo CV</a></p>
+    <p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Vídeo CV</a></p>
   </section>
 
   <section id="swot" data-aos="fade-up">
