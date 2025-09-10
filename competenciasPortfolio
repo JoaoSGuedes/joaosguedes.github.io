@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>João Guedes | IT Lead Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #111;
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      max-width: 700px;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav a:hover {
+      color: #00bcd4;
+      transform: scale(1.1);
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      font-size: 2rem;
+      color: #00bcd4;
+      margin-bottom: 1rem;
+    }
+    .project {
+      background: #1a1a1a;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 188, 212, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 188, 212, 0.3);
+    }
+    .project h3 {
+      margin-bottom: 0.5rem;
+    }
+    .project a {
+      color: #00bcd4;
+      text-decoration: none;
+    }
+    .project a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      padding-left: 1rem;
+    }
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      transition: background 0.3s;
+    }
+    footer:hover {
+      background: #1c1c1c;
+    }
+    img.profile {
+      max-width: 180px;
+      border-radius: 50%;
+      margin: 2rem auto;
+      display: block;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header data-aos="fade-in">
+    <h1>João Guedes</h1>
+    <p>Lead Developer na Siemens | Especialista em Low-Code, Integração de Sistemas e Arquitetura de Soluções</p>
+  </header>
+
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#portefolio">Projetos</a>
+    <a href="#links">Documentos</a>
+    <a href="#swot">SWOT</a>
+  </nav>
+
+  <section id="sobre" data-aos="fade-up">
+    <h2>Sobre Mim</h2>
+    <img src="https://joaosguedes.github.io/IMG_5497%202.PNG" alt="Foto de João Guedes" class="profile">
+    <p>Sou apaixonado por criar soluções que realmente importam. Como IT Lead Developer na Siemens, ajudo equipas a entregar software inteligente, escalável e com impacto real no negócio. Gosto de definir a direção técnica dos projetos, orientar colegas e garantir que não estamos apenas a entregar código — mas sim a gerar valor tangível para utilizadores e stakeholders. Acredito que tecnologia sem propósito é ruído, e o meu foco está sempre em resolver problemas com elegância, clareza e impacto.</p>
+  </section>
+
+  <section id="portefolio" data-aos="fade-up">
+  <h2>Projetos em Destaque</h2>
+  <div class="project" data-aos="fade-left">
+    <h3>LetterEase</h3>
+    <p>Aplicação para geração dinâmica de documentos com variáveis, exportação para PDF/Word e integração com APIs empresariais.</p>
+    <a href="letterease.html" target="_blank">Ver projeto</a>
+  </div>  
+  <div class="project" data-aos="fade-right">
+  <h3>SkillHunt</h3>
+  <p>Plataforma gamificada de recrutamento técnico. Inclui sistema de XP, desafios validados por feedback social e integração com LinkedIn/GitHub para scoring automático de skills.</p>
+</div><div class="project" data-aos="fade-left">
+    <h3>Radar de Barcos (LP1)</h3>
+    <p>Projeto académico em C para deteção de padrões em matrizes radar. Aborda lógica algorítmica sem ponteiros, ideal para ensino introdutório.</p>
+  </div>
+</section>
+
+  <section id="links" data-aos="fade-up">
+  <h2>Documentos Relevantes</h2>
+  <div style="display: flex; grid-template-columns: repeat(2, 1fr); gap: 2rem; justify-items: center;">
+    <a href="https://joaosguedes.github.io/JoaoGuedes_CV.pdf" target="_blank" style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; text-align: center; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2); text-decoration: none; transition: all 0.3s;">
+      <strong>📄 Resume (CV)</strong><br><span>Ver PDF</span>
+    </a>
+    <a href="https://joaosguedes.github.io/CartaApresentacao.pdf" target="_blank" style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; text-align: center; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2); text-decoration: none; transition: all 0.3s;">
+      <strong>📝 Carta de Apresentação</strong><br><span>Ver PDF</span>
+    </a>
+    <a href="https://www.linkedin.com/in/joaosguedes" target="_blank" style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; text-align: center; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2); text-decoration: none; transition: all 0.3s;">
+      <strong>🔗 LinkedIn</strong><br><span>Perfil Profissional</span>
+    </a>
+    
+  </div>
+</section>
+
+  <section id="swot" data-aos="fade-up">
+  <h2>Análise SWOT</h2>
+  <div style="display: flex; gap: 1.5rem; justify-content: center;">
+    <div style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2);">
+      <strong>💪 Forças</strong>
+      <p style="margin-top: 0.5rem; font-size: 0.95rem;">Liderança técnica, comunicação clara, impacto real em projetos multinacionais.</p>
+    </div>
+    <div style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2);">
+      <strong>⚠️ Fraquezas</strong>
+      <p style="margin-top: 0.5rem; font-size: 0.95rem;">Exposição prática limitada fora de Mendix (em expansão).</p>
+    </div>
+    <div style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2);">
+      <strong>🚀 Oportunidades</strong>
+      <p style="margin-top: 0.5rem; font-size: 0.95rem;">Crescimento em arquitetura, cloud e liderança estratégica.</p>
+    </div>
+    <div style="background: #1a1a1a; color: #00bcd4; padding: 2rem; border-radius: 10px; width: 220px; box-shadow: 0 4px 20px rgba(0,188,212,0.2);">
+      <strong>🔒 Ameaças</strong>
+      <p style="margin-top: 0.5rem; font-size: 0.95rem;">Saturação de mercado em perfis técnicos sem diferenciação de soft skills.</p>
+    </div>
+  </div>
+</section>
+
+  <footer data-aos="fade-in">
+    <p>&copy; 2025 João Guedes – Criado com foco em excelência e impacto</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: false
+    });
+  </script>
+</body>
+</html>
