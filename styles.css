@@ -1,8 +1,28 @@
 body {
-    background-color: #b3b3b3;
+    background-color: #edecec;
 }
-.section1 {
+.section-info {
     background-color: #939393;
     padding: 10px;
     border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.section-map {
+    display: flex;
+    background-color: #939393;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .embedded-map {
+        float: right;
+        iframe {
+            border: 2px solid #000;
+            border-radius: 10px;
+            width: 150px;
+            height: 150px;
+        }
+    }
 }
