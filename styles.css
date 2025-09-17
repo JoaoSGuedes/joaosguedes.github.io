@@ -5,6 +5,7 @@ body {
 img {
     width: 300px;
 }
+
 .section-info {
     background-color: #939393;
     padding: 10px;
@@ -25,8 +26,10 @@ img {
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+
     .embedded-map {
         float: right;
+
         iframe {
             border: 2px solid #000;
             border-radius: 10px;
@@ -42,6 +45,7 @@ img {
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+
     img {
         display: block;
         margin: 0 auto;
@@ -49,17 +53,21 @@ img {
         height: auto;
     }
 }
+
 .section-with-img p {
     text-align: center;
     font-weight: bold;
 }
+
 .section-with-img img {
     margin-top: 10px;
 }
+
 .section-with-img img:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
+
 .section-with-img img:active {
     transform: scale(0.9);
     transition: transform 0.1s ease;
@@ -76,11 +84,14 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+
     img {
         width: 150px;
         border-radius: 20px;
-    };
-}  
+    }
+
+    ;
+}
 
 .section-poem {
     background-color: #939393;
@@ -88,15 +99,40 @@ img {
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+
     p {
         font-style: italic;
         text-align: center;
         line-height: 1.5;
     }
+
     p:nth-child(odd) {
         color: #07073e;
     }
+
     p:nth-child(even) {
         color: #076310;
     }
-}   
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    width: 80%;
+    margin: 20px auto;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    color: darkblue;
+}
+
+td {
+    color: darkgreen;
+}
