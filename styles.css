@@ -1,6 +1,10 @@
 body {
     background-color: #edecec;
 }
+
+img {
+    width: 300px;
+}
 .section-info {
     background-color: #939393;
     padding: 10px;
