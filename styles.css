@@ -15,6 +15,11 @@ img {
 
 .section-map {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     background-color: #939393;
     padding: 10px;
     border-radius: 5px;
@@ -25,7 +30,7 @@ img {
         iframe {
             border: 2px solid #000;
             border-radius: 10px;
-            width: 150px;
+            width: 250px;
             height: 150px;
         }
     }
@@ -59,3 +64,39 @@ img {
     transform: scale(0.9);
     transition: transform 0.1s ease;
 }
+
+.subsection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.fotografias {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    img {
+        width: 150px;
+        border-radius: 20px;
+    };
+}  
+
+.section-poem {
+    background-color: #939393;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    p {
+        font-style: italic;
+        text-align: center;
+        line-height: 1.5;
+    }
+    p:nth-child(odd) {
+        color: #07073e;
+    }
+    p:nth-child(even) {
+        color: #076310;
+    }
+}   
