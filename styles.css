@@ -17,14 +17,22 @@ header {
     position: sticky;
     z-index: 1000;
     top: 0;
+
+    h2{
+        display: flex;
+        justify-content: space-between;
+    }
+
     ul {
         list-style-type: none;
         display: flex;
         gap: 30px;
         margin-left: auto;
         margin-right: 20px;
+
         li {
             display: inline;
+
             a {
                 color: white;
                 text-decoration: none;
@@ -32,13 +40,15 @@ header {
                 padding: 8px 12px;
                 border-radius: 5px;
             }
+
             a:hover {
                 background-color: grey;
             }
+
             a:active {
                 background-color: darkgrey;
             }
-        }   
+        }
     }
 }
 
@@ -63,6 +73,10 @@ footer {
 .section {
     height: 100vh;
     scroll-margin-top: 47.5px;
+    @media screen {
+        scroll-margin-top: 179.5px;
+    }
+
     h2 {
         margin-bottom: 20px;
     }
@@ -71,11 +85,13 @@ footer {
 .section-hero {
     background-color: #a8a8a8;
     position: relative;
+
     img {
         margin: 0 auto;
         width: 100%;
         height: 100%;
     }
+
     .hero-text {
         position: absolute;
         left: 100px;
@@ -84,6 +100,7 @@ footer {
         padding-top: 20px;
         color: black;
     }
+
     .about-me {
         display: flex;
         align-items: center;
@@ -234,6 +251,7 @@ td {
     flex-direction: column;
     justify-content: center;
     padding-top: 25px;
+
     ul {
         list-style-type: square;
         margin-left: 20px;
@@ -249,6 +267,7 @@ td {
     justify-content: space-evenly;
     align-content: center;
 }
+
 @media (max-width: 768px) {
     .subsection {
         flex-direction: column;
@@ -270,6 +289,53 @@ td {
     box-shadow: 0 8px 12px rgba(13, 12, 12, 0.1);
 }
 
+/* Hamburger Menu Styles */
+.hamburguer {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+   header {
+        flex-direction: column;
+    }
+
+    .header-top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav {
+        display: none;
+    }
+
+    header:hover nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: black;
+        ul {
+            flex-direction: column;
+            li {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    }
+
+
+    .hamburguer {
+        display: block;
+    }
+}
+
+
 /* About Me Button Styles */
 .about-me-btn {
     background-color: grey;
@@ -281,9 +347,11 @@ td {
     font-size: 16px;
     margin-left: 10px;
 }
+
 .about-me-btn:hover {
     filter: brightness(85%);
 }
+
 .about-me-btn:active {
     filter: brightness(60%);
 }
