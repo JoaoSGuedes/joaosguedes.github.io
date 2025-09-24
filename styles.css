@@ -8,7 +8,8 @@
 header {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
     background-color: black;
     color: white;
     text-align: center;
@@ -19,9 +20,25 @@ header {
     ul {
         list-style-type: none;
         display: flex;
-        gap: 20px;
+        gap: 30px;
         margin-left: auto;
         margin-right: 20px;
+        li {
+            display: inline;
+            a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            }
+            a:hover {
+                background-color: grey;
+            }
+            a:active {
+                background-color: darkgrey;
+            }
+        }   
     }
 }
 
@@ -45,6 +62,7 @@ footer {
 
 .section {
     height: 100vh;
+    scroll-margin-top: 47.5px;
     h2 {
         margin-bottom: 20px;
     }
