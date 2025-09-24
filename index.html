@@ -10,51 +10,73 @@
 
 <body>
     <header>
-        <h1>Primeira Página Web!</h1>
-        <nav>
-            <a href="index.html">Home</a>
-        </nav>
+        <h2>Primeira Página Web!</h2>
     </header>
 
     <main>
-        <section class="section-info">
-            <h2>Desenvolvimento de Interfaces Web</h2>
-            <p>Na unidade curricular de
-                <a href="https://moodle.ensinolusofona.pt/course/view.php?id=11232" target="_blank"
-                    rel="noopener">Desenvolvimento de Interfaces
-                    Web</a>
-                abordaremos as seguintes tecnologias Web &#127760;:
-            </p>
-            <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>React e Next.js</li>
-            </ul>
-        </section>
+        <section class="section section-hero">
+            <div class="hero-text">
+                <h1>Bem-vindo à minha página!</h1>
+                <div class="about-me">
+                    <h3>Explora os meus projetos e cursos</h3>
+                    <button class="about-me-btn">Aqui!</button>
+                </div>
 
-        <section class="section-with-img">
-            <h2>Iremos criar soluções criativas!</h2>
-            <div class="subsection">
-                <div>
-                    <nav>
-                        <ul>
-                            <li><a href="lab1/index.html">Lab1</a></li>
-                            <li><a href="lab2/index.html">Lab2</a></li>
-                            <li><a href="lab3/index.html">Lab2</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div>
-                    <img src="images/diw.svg" alt="Desenvolvimento de Interfaces Web">
-                </div>
             </div>
 
+            <img src="images/hero-image.jpeg" alt="Hero image">
+        </section>
+
+        <section class="section section-projects">
+            <h2>Projetos / Labs</h2>
+            <p>Explora os meus projetos e labs realizados ao longo do semestre.</p>
+            <div class="subsection">
+                <div class="project">
+                    <a href="lab1/index.html">Lab1</a>
+                    <p>Estrutura base e semântica</p>
+                </div>
+                <div class="project">
+                    <a href="lab2/index.html">Lab2</a>
+                    <p>Estilos e layout responsivo</p>
+                </div>
+                <div class="project">
+                    <a href="lab3/index.html">Lab3</a>
+                    <p>Interatividade com JS</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section section-courses">
+            <h2>Cursos</h2>
+            <p>Alguns dos cursos que estou a frequentar neste semestre.</p>
+            <div class="courses">
+                <p>Eis a minha primeira página web!</p>
+                <p>
+                    Na unida curricular de
+                    <a href="https://moodle.ensinolusofona.pt/course/view.php?id=11232">
+                        Desenvolvimento de Interfaces Web
+                    </a>
+                    abordaremos as seguintes tecnologias Web &#127760;:
+                </p>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React e Nex.js</li>
+                </ul>
+                <p>Iremos criar soluções criativas!</p>
+
+            </div>
+
+            <div>
+                <img src="images/diw.svg" alt="Desenvolvimento de Interfaces Web">
+            </div>
         </section>
 
     </main>
 
-    <footer>
+    <footer class="footer">
         <p>Universidade Lusófona © 2025</p>
     </footer>
 </body>
