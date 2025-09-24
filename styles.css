@@ -18,9 +18,25 @@ header {
     z-index: 1000;
     top: 0;
 
-    h2{
+    h2 {
         display: flex;
         justify-content: space-between;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
+    a:hover {
+        background-color: grey;
+    }
+
+    a:active {
+        background-color: darkgrey;
     }
 
     ul {
@@ -33,21 +49,7 @@ header {
         li {
             display: inline;
 
-            a {
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-                padding: 8px 12px;
-                border-radius: 5px;
-            }
 
-            a:hover {
-                background-color: grey;
-            }
-
-            a:active {
-                background-color: darkgrey;
-            }
         }
     }
 }
@@ -73,13 +75,11 @@ footer {
 .section {
     height: 100vh;
     scroll-margin-top: 47.5px;
-    @media screen {
+
+    @media (max-width: 768px){
         scroll-margin-top: 179.5px;
     }
 
-    h2 {
-        margin-bottom: 20px;
-    }
 }
 
 .section-hero {
@@ -298,7 +298,7 @@ td {
 
 @media (max-width: 600px) {
 
-   header {
+    header {
         flex-direction: column;
     }
 
@@ -320,8 +320,19 @@ td {
         justify-content: center;
         gap: 10px;
         background-color: black;
+
+        a {
+            flex-direction: column;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
         ul {
             flex-direction: column;
+
             li {
                 flex-direction: column;
                 width: 100%;
