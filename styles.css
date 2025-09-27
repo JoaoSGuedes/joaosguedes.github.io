@@ -15,7 +15,7 @@ header {
     text-align: center;
     padding: 10px;
     position: sticky;
-    z-index: 1000;
+    z-index: 1001;
     top: 0;
 
     h2 {
@@ -124,15 +124,122 @@ footer {
 .section-info {
     background-color: #939393;
     padding: 10px;
-    border-radius: 5px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "stats facts"
+        "image facts"
+        "image spacer";
+    gap: 20px;
+    max-width: 1100px;
+    margin: 20px auto 40px auto;
+    padding: 20px;
+    background-color: #1c1717;
+    border-radius: 12px;
+}
+
+.info-grid > * {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.info-header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-header h2 {
+    font-size: 2rem;
+}
+
+.info-header p {
+    font-size: 1.1rem;
+}
+
+.info-stats {
+    grid-area: stats;
+}
+
+.info-stats table {
+    width: 100%;
+    margin: 0;
+}
+
+.info-stats th,
+.info-stats td {
+    text-align: left;
+}
+
+.info-facts {
+    grid-area: facts;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-facts ul {
+    padding-left: 20px;
+    display: grid;
+    gap: 8px;
+}
+
+.info-image {
+    grid-area: image;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.info-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.info-image figcaption {
     margin-top: 10px;
-    margin-bottom: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333333;
+}
+
+.info-spacer {
+    grid-area: spacer;
+    background-color: transparent;
+    border: 2px dashed #cfcfcf;
+    border-radius: 10px;
+    min-height: 100px;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "stats"
+            "image"
+            "facts"
+            "spacer";
+    }
+
+    .info-grid > * {
+        padding: 16px;
+    }
 }
 
 .section-map {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     align-content: space-around;
     justify-content: space-between;
     align-items: center;
@@ -150,6 +257,18 @@ footer {
             border-radius: 10px;
             width: 250px;
             height: 150px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+
+        .embedded-map {
+            iframe {
+                width: 100%;
+                height: auto;
+            }
         }
     }
 }
@@ -197,6 +316,11 @@ footer {
     img {
         width: 150px;
         border-radius: 20px;
+        transition: width 0.3s ease;
+    }
+    img:hover {
+        width: 170px;
+        border: 1px solid black;
     }
 
     ;
@@ -206,8 +330,7 @@ footer {
     background-color: #939393;
     padding: 10px;
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+
 
     p {
         font-style: italic;
@@ -368,11 +491,11 @@ td {
 }
 
 .page-subnav {
+    scroll-margin-top: 47.5px !important;
     background-color: #adaaaa;
     padding: 15px;
     border-radius: 5px;
-    margin: 20px 0;
-    text-align: center;
+    text-align: left;
 
     h2 {
         margin-bottom: 10px;
@@ -389,6 +512,7 @@ td {
         font-size: 16px;
         padding: 6px 10px;
         border-radius: 5px;
+        background-color: lightgrey;
     }
 
     a:hover {
@@ -399,3 +523,21 @@ td {
         background-color: darkgrey;
     }
 }
+
+.section-photos {
+    background-color: #43c7a2;
+    padding: 10px;
+}
+.section-video {
+    background-color: #26c8ed;
+    padding: 10px;
+}
+
+.section-multimedia {
+    
+    .hero-text {
+        color: white;
+        font-size: 3vw;
+    }
+}
+
