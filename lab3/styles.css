@@ -543,19 +543,25 @@ td {
 
 
 /*Extra points*/
-.extra-points {
-    position: relative;
-    overflow: hidden;
-    padding: 80px 20px;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
 
 .extra-video {
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
 }
+
+.section.extra-points {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.section.extra-points .parallax-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem 0;
+}
+
 
 .extra-video #myVideo {
     position: absolute;
@@ -566,56 +572,29 @@ td {
     z-index: -1;
 }
 
+div.parallax {
 
-
-.extra-points::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75));
-    z-index: 0;
+     margin: 0px;
 }
 
-.extra-points__content {
-    display: grid;
-    gap: 24px;
-    max-width: 900px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
+.parallax {
+  background-image: url("../images/lisboa-grid.jpg");
+  min-height: 200px; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-
-
-.extra-card {
-    background-color: rgba(0, 0, 0, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(2px);
-}
-
-.extra-card h1 {
-    margin-bottom: 12px;
-    font-size: clamp(2rem, 4vw, 3rem);
-}
-
-.extra-card p {
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    .extra-points {
-        padding: 60px 16px;
-    }
-
-    .extra-card {
-        padding: 20px;
-    }
+.parallax2 {
+  background-image: url("../images/lisboa-grid.jpg");
+  min-height: 200px; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 b {
   color: dodgerblue;
 }
+

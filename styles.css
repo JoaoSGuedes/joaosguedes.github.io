@@ -541,3 +541,60 @@ td {
     }
 }
 
+
+/*Extra points*/
+
+.extra-video {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.section.extra-points {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.section.extra-points .parallax-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem 0;
+}
+
+
+.extra-video #myVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+div.parallax {
+
+     margin: 0px;
+}
+
+.parallax {
+  background-image: url("../images/lisboa-grid.jpg");
+  min-height: 200px; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  background-image: url("../images/lisboa-grid.jpg");
+  min-height: 200px; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+b {
+  color: dodgerblue;
+}
+
