@@ -70,6 +70,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    position: fixed;
 }
 
 .section {
@@ -389,6 +390,7 @@ td {
     flex-direction: row;
     justify-content: space-evenly;
     align-content: center;
+    gap: 10px;
 }
 
 @media (max-width: 768px) {
