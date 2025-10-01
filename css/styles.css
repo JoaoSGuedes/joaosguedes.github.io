@@ -647,6 +647,30 @@ b {
     color: #f1f1f1;
 }
 
+.lab4-page .lab4-nav {
+    margin-top: 16px;
+}
+
+.lab4-page .lab4-nav .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    color: #f9c74f;
+    background: rgba(255, 255, 255, 0.12);
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.lab4-page .lab4-nav .nav-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+}
+
 .lab4-page .hero {
     background: linear-gradient(135deg, #1c1717, #403b3b);
     color: white;
