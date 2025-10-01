@@ -1,13 +1,14 @@
 (() => {
   const body = document.body;
   const header = document.querySelector('header');
-  const headerTitle = document.querySelector('header h2');
-  const hamburger = document.querySelector('.hamburguer');
-  const infoSections = Array.from(document.querySelectorAll('.section-info'));
-  const attractionItems = Array.from(document.querySelectorAll('.section-info ul li'));
+  const headerTitle = document.querySelector('[data-header-title]');
+  const partyToggle = document.getElementById('party-toggle');
+  const factText = document.getElementById('fact-text');
+  const attractions = Array.from(document.querySelectorAll('[data-attraction-item]'));
+  const counterValue = document.getElementById('counter-value');
+  const pointerTracker = document.getElementById('pointer-tracker');
+  const confettiPieces = Array.from(document.querySelectorAll('[data-confetti]'));
 
-
-//gerador de factos
   const funFacts = [
     'Sabias que é possível apanhar elétrico até ao Castelo? Aproveita a vista!',
     'O pastel de nata nasceu na zona de Belém — combina bem com um passeio pelo Tejo.',
@@ -16,220 +17,252 @@
     'O elevador de Santa Justa foi desenhado por um aprendiz de Gustave Eiffel.'
   ];
 
-  const firstInfoSection = infoSections[0];
-  if (firstInfoSection) {
-    const factWrapper = document.createElement('div');
-    factWrapper.style.marginTop = '16px';
-    factWrapper.style.padding = '16px';
-    factWrapper.style.borderRadius = '10px';
-    factWrapper.style.background = 'rgba(255, 255, 255, 0.85)';
-    factWrapper.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
+  const partyColors = ['#f94144', '#f3722c', '#f8961e', '#f9844a', '#f9c74f', '#90be6d', '#43aa8b', '#577590'];
+  const confettiEmojis = ['\u2728', '\uD83C\uDF8A', '\uD83C\uDF87', '\uD83C\uDF1F', '\uD83C\uDF82'];
 
-    const factTitle = document.createElement('p');
-    factTitle.textContent = 'Facto aleatório sobre Lisboa:';
-    factTitle.style.fontWeight = '600';
-    factTitle.style.marginBottom = '8px';
+  let lastFactIndex = -1;
+  let highlightTimerId;
+  let counter = 0;
+  let partyIntervalId = null;
+  let colorIndex = 0;
+  let isPartyActive = false;
+  let confettiCursor = 0;
 
-    const factText = document.createElement('p');
-    factText.textContent = 'Carrega no botão para descobrir algo giro.';
-    factText.style.lineHeight = '1.5';
+  const originalTitle = headerTitle ? headerTitle.textContent : '';
+  const originalToggleLabel = partyToggle ? partyToggle.textContent : '';
 
-    const factButton = document.createElement('button');
-    factButton.type = 'button';
-    factButton.textContent = 'Gerar facto';
-    factButton.style.marginTop = '12px';
-    factButton.style.padding = '10px 16px';
-    factButton.style.borderRadius = '999px';
-    factButton.style.border = 'none';
-    factButton.style.cursor = 'pointer';
-    factButton.style.background = '#f3722c';
-    factButton.style.color = '#fff';
-    factButton.style.fontWeight = '600';
-    factButton.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
-    factButton.style.transition = 'transform 0.2s ease';
+  const highlightRandomAttraction = () => {
+    if (!attractions.length) {
+      return;
+    }
 
-    let lastFactIndex = -1;
-    let highlightTimer;
+    const randomIndex = Math.floor(Math.random() * attractions.length);
+    const randomItem = attractions[randomIndex];
 
-    const highlightRandomAttraction = () => {
-      if (!attractionItems.length) {
-        return;
-      }
-
-      const randomIndex = Math.floor(Math.random() * attractionItems.length);
-      const randomItem = attractionItems[randomIndex];
-
-      attractionItems.forEach((item) => {
-        item.style.backgroundColor = '';
-        item.style.fontWeight = '';
-      });
-
-      randomItem.style.backgroundColor = '#ffe066';
-      randomItem.style.fontWeight = '600';
-
-      clearTimeout(highlightTimer);
-      highlightTimer = window.setTimeout(() => {
-        randomItem.style.backgroundColor = '';
-        randomItem.style.fontWeight = '';
-      }, 1600);
-    };
-
-    factButton.addEventListener('mouseenter', () => {
-      factButton.style.transform = 'scale(1.04)';
+    attractions.forEach((item) => {
+      item.style.backgroundColor = '';
+      item.style.transform = '';
+      item.style.fontWeight = '';
     });
 
-    factButton.addEventListener('mouseleave', () => {
-      factButton.style.transform = '';
-    });
+    randomItem.style.backgroundColor = '#ffe066';
+    randomItem.style.transform = 'scale(1.03)';
+    randomItem.style.fontWeight = '600';
 
-    factButton.addEventListener('click', () => {
-      if (!funFacts.length) {
-        return;
+    window.clearTimeout(highlightTimerId);
+    highlightTimerId = window.setTimeout(() => {
+      randomItem.style.backgroundColor = '';
+      randomItem.style.transform = '';
+      randomItem.style.fontWeight = '';
+    }, 1600);
+  };
+
+  const showRandomFact = () => {
+    if (!factText || !funFacts.length) {
+      return;
+    }
+
+    let nextIndex = Math.floor(Math.random() * funFacts.length);
+    if (funFacts.length > 1) {
+      while (nextIndex === lastFactIndex) {
+        nextIndex = Math.floor(Math.random() * funFacts.length);
       }
+    }
+    lastFactIndex = nextIndex;
 
-      let nextIndex = Math.floor(Math.random() * funFacts.length);
-      if (funFacts.length > 1) {
-        while (nextIndex === lastFactIndex) {
-          nextIndex = Math.floor(Math.random() * funFacts.length);
-        }
-      }
-      lastFactIndex = nextIndex;
-
+    factText.style.opacity = '0';
+    factText.style.transition = 'opacity 0.3s ease';
+    window.requestAnimationFrame(() => {
       factText.textContent = funFacts[nextIndex];
-      factText.style.opacity = '0';
-      factText.style.transition = 'opacity 0.3s ease';
-
-      requestAnimationFrame(() => {
-        factText.style.opacity = '1';
-      });
-
-      highlightRandomAttraction();
+      factText.style.opacity = '1';
     });
 
-    factWrapper.appendChild(factTitle);
-    factWrapper.appendChild(factText);
-    factWrapper.appendChild(factButton);
-    firstInfoSection.appendChild(factWrapper);
-  }
+    highlightRandomAttraction();
+  };
 
+  const emphasizeButton = (button) => {
+    if (!button) {
+      return;
+    }
+    button.style.transform = 'scale(1.08)';
+    button.style.boxShadow = '0 16px 28px rgba(0, 0, 0, 0.3)';
+  };
 
-  if (hamburger) {
-    const partyColors = ['#f94144', '#f3722c', '#f8961e', '#f9844a', '#f9c74f', '#90be6d', '#43aa8b', '#577590'];
-    let partyIntervalId = null;
-    let colorIndex = 0;
-    let isPartyActive = false;
+  const normalizeButton = (button) => {
+    if (!button) {
+      return;
+    }
+    button.style.transform = '';
+    button.style.boxShadow = '';
+  };
 
-    const originalTitle = headerTitle ? headerTitle.textContent : '';
-    const stopPartyMode = () => {
-      if (!isPartyActive) {
-        return;
-      }
+  const stopPartyMode = () => {
+    if (!isPartyActive) {
+      return;
+    }
 
-      window.clearInterval(partyIntervalId);
-      partyIntervalId = null;
-      isPartyActive = false;
-      colorIndex = 0;
+    window.clearInterval(partyIntervalId);
+    partyIntervalId = null;
+    isPartyActive = false;
+    colorIndex = 0;
+
+    if (body) {
       body.style.backgroundColor = '';
       body.style.transition = '';
+    }
+    if (header) {
+      header.style.backgroundColor = '';
+      header.style.transition = '';
+    }
+    if (headerTitle) {
+      headerTitle.textContent = originalTitle;
+    }
+    if (partyToggle) {
+      partyToggle.textContent = originalToggleLabel || '\u2630';
+      partyToggle.style.transform = '';
+      partyToggle.setAttribute('aria-label', 'Ativar modo festa');
+    }
+  };
 
-      if (header) {
-        header.style.backgroundColor = '';
-        header.style.transition = '';
-      }
+  const startPartyMode = () => {
+    if (isPartyActive) {
+      return;
+    }
 
-      if (headerTitle) {
-        headerTitle.textContent = originalTitle;
-      }
-
-      hamburger.textContent = '\u2630';
-      hamburger.style.transform = '';
-      hamburger.style.transition = '';
-      hamburger.setAttribute('aria-label', 'Ligar modo festa');
-    };
-
-    const startPartyMode = () => {
-      if (isPartyActive) {
-        return;
-      }
-
-      isPartyActive = true;
+    isPartyActive = true;
+    if (body) {
       body.style.transition = 'background-color 0.6s ease';
-      if (header) {
-        header.style.transition = 'background-color 0.6s ease';
-      }
+    }
+    if (header) {
+      header.style.transition = 'background-color 0.6s ease';
+    }
+    if (partyToggle) {
+      partyToggle.setAttribute('aria-label', 'Desligar modo festa');
+    }
 
-      hamburger.style.transition = 'transform 0.4s ease';
-      hamburger.setAttribute('aria-label', 'Desligar modo festa');
+    partyIntervalId = window.setInterval(() => {
+      const color = partyColors[colorIndex % partyColors.length];
+      const accentColor = partyColors[(colorIndex + 3) % partyColors.length];
 
-      partyIntervalId = window.setInterval(() => {
-        const color = partyColors[colorIndex % partyColors.length];
-        const accentColor = partyColors[(colorIndex + 3) % partyColors.length];
+      if (body) {
         body.style.backgroundColor = color;
-        if (header) {
-          header.style.backgroundColor = accentColor;
-        }
-        if (headerTitle) {
-          headerTitle.textContent = `Modo Festa \uD83C\uDF89 (${colorIndex + 1})`;
-        }
-
-        hamburger.style.transform = `rotate(${Math.sin(colorIndex) * 18}deg) scale(1.15)`;
-        colorIndex += 1;
-      }, 700);
-    };
-
-    hamburger.addEventListener('click', () => {
-      if (isPartyActive) {
-        stopPartyMode();
-      } else {
-        startPartyMode();
       }
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopPartyMode();
+      if (header) {
+        header.style.backgroundColor = accentColor;
       }
-    });
-  }
-
-  // --- Emoji confetti on double-click --------------------------------------
-  if (infoSections.length) {
-    const confettiEmojis = ['\u2728', '\uD83C\uDF8A', '\uD83C\uDF87', '\uD83C\uDF1F', '\uD83C\uDF82'];
-
-    const launchEmojiConfetti = (x, y) => {
-      const totalPieces = 14;
-
-      for (let index = 0; index < totalPieces; index += 1) {
-        const confettiPiece = document.createElement('span');
-        confettiPiece.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
-        confettiPiece.style.position = 'fixed';
-        confettiPiece.style.left = `${x + Math.random() * 80 - 40}px`;
-        confettiPiece.style.top = `${y + Math.random() * 40 - 20}px`;
-        confettiPiece.style.fontSize = `${Math.random() * 16 + 16}px`;
-        confettiPiece.style.transition = 'transform 0.9s ease, opacity 0.9s ease';
-        confettiPiece.style.transform = 'translateY(0)';
-        confettiPiece.style.opacity = '1';
-        confettiPiece.style.pointerEvents = 'none';
-        confettiPiece.style.zIndex = '2000';
-
-        body.appendChild(confettiPiece);
-
-        requestAnimationFrame(() => {
-          const direction = Math.random() > 0.5 ? 1 : -1;
-          const translateY = 60 + Math.random() * 60;
-          const rotate = direction * (20 + Math.random() * 120);
-          confettiPiece.style.transform = `translate(${direction * (10 + Math.random() * 30)}px, ${translateY}px) rotate(${rotate}deg)`;
-          confettiPiece.style.opacity = '0';
-        });
-
-        window.setTimeout(() => confettiPiece.remove(), 900);
+      if (headerTitle) {
+        headerTitle.textContent = `Modo Festa \uD83C\uDF89 (${colorIndex + 1})`;
       }
-    };
+      if (partyToggle) {
+        partyToggle.textContent = '\uD83C\uDF89';
+        partyToggle.style.transform = `rotate(${Math.sin(colorIndex) * 18}deg) scale(1.15)`;
+      }
 
-    infoSections.forEach((section) => {
-      section.addEventListener('dblclick', (event) => {
-        launchEmojiConfetti(event.clientX, event.clientY);
+      colorIndex += 1;
+    }, 700);
+  };
+
+  const togglePartyMode = () => {
+    if (isPartyActive) {
+      stopPartyMode();
+    } else {
+      startPartyMode();
+    }
+  };
+
+  const updatePointerTracker = (event) => {
+    if (!pointerTracker) {
+      return;
+    }
+
+    const target = event.currentTarget;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const bounds = target.getBoundingClientRect();
+    const x = Math.round(event.clientX - bounds.left);
+    const y = Math.round(event.clientY - bounds.top);
+    pointerTracker.textContent = `Coordenadas mágicas: ${x}px, ${y}px`;
+  };
+
+  const clearPointerTracker = () => {
+    if (!pointerTracker) {
+      return;
+    }
+    pointerTracker.textContent = 'Move o rato por aqui para veres as coordenadas mágicas.';
+  };
+
+  const incrementCounter = () => {
+    if (!counterValue) {
+      return;
+    }
+
+    counter += 1;
+    counterValue.textContent = String(counter);
+    counterValue.style.transform = 'scale(1.14)';
+    counterValue.style.transition = 'transform 0.2s ease';
+
+    window.setTimeout(() => {
+      counterValue.style.transform = '';
+    }, 220);
+  };
+
+  const resetCounter = () => {
+    if (!counterValue) {
+      return;
+    }
+    counter = 0;
+    counterValue.textContent = '0';
+    counterValue.style.transform = 'scale(1)';
+  };
+
+  const triggerConfetti = (event) => {
+    if (!confettiPieces.length) {
+      return;
+    }
+
+    const piecesToUse = Math.min(12, confettiPieces.length);
+
+    for (let index = 0; index < piecesToUse; index += 1) {
+      const piece = confettiPieces[(confettiCursor + index) % confettiPieces.length];
+      const emoji = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+
+      piece.textContent = emoji;
+      piece.style.left = `${event.clientX + Math.random() * 80 - 40}px`;
+      piece.style.top = `${event.clientY + Math.random() * 40 - 20}px`;
+      const direction = Math.random() > 0.5 ? 1 : -1;
+      const translateX = direction * (10 + Math.random() * 30);
+      const translateY = 60 + Math.random() * 60;
+      const rotate = direction * (20 + Math.random() * 120);
+
+      piece.style.transition = 'none';
+      piece.style.transform = 'translate(0, 0) rotate(0deg)';
+      piece.style.opacity = '1';
+
+      window.requestAnimationFrame(() => {
+        piece.style.transition = 'transform 0.9s ease, opacity 0.9s ease';
+        piece.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
+        piece.style.opacity = '0';
       });
-    });
-  }
+    }
+
+    confettiCursor = (confettiCursor + piecesToUse) % confettiPieces.length;
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopPartyMode();
+    }
+  });
+
+  window.showRandomFact = showRandomFact;
+  window.emphasizeButton = emphasizeButton;
+  window.normalizeButton = normalizeButton;
+  window.togglePartyMode = togglePartyMode;
+  window.updatePointerTracker = updatePointerTracker;
+  window.clearPointerTracker = clearPointerTracker;
+  window.incrementCounter = incrementCounter;
+  window.resetCounter = resetCounter;
+  window.triggerConfetti = triggerConfetti;
 })();

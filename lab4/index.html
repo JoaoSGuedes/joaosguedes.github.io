@@ -4,39 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lisboa</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Lisboa Vibrante</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
-<body>
+<body class="lab4-page">
     <header>
         <div class="header-top">
-            <h2>Testes JS</h2>
-            <span class="hamburguer">&#9776;</span>
+            <h1 data-header-title>Lisboa Vibrante</h1>
+            <button id="party-toggle" class="hamburguer" type="button" onclick="togglePartyMode()" aria-label="Ativar modo festa">&#9776;</button>
         </div>
+        <p class="tagline">Descobre cantos e recantos lisboetas com uma pitada de animação.</p>
     </header>
 
     <main>
-        <h2>Header2</h2>
-        
-        <section class="section-info">
-            <p>Lorem ipsum</p>
+        <section id="hero-section" class="hero" onmousemove="updatePointerTracker(event)" onmouseout="clearPointerTracker()">
+            <div class="hero-text">
+                <h2>Desliza pelo Tejo</h2>
+                <p>Explora miradouros, sabores e histórias que dão ritmo à cidade das sete colinas.</p>
+                <p id="pointer-tracker">Move o rato por aqui para veres as coordenadas mágicas.</p>
+            </div>
+            <figure class="hero-figure">
+                <img src="../images/lisboa3.jpeg" alt="Vista de Lisboa ao pôr do sol">
+            </figure>
         </section>
 
-        <section class="section-info">
-
-            <ul>
-                <li>Torre de Belém</li>
-                <li>Mosteiro dos Jerónimos</li>
-                <li>Castelo de São Jorge</li>
-                <li>Praça do Comércio</li>
+        <section id="facts-section" class="section-info" ondblclick="triggerConfetti(event)">
+            <div class="section-heading">
+                <h2>Factos aleatórios sobre Lisboa</h2>
+            </div>
+            <p id="fact-text">Carrega no botão para descobrir algo giro sobre a cidade.</p>
+            <button id="fact-button" type="button" onclick="showRandomFact()" onmouseover="emphasizeButton(this)" onmouseout="normalizeButton(this)">Gerar facto</button>
+            <ul class="attractions">
+                <li data-attraction-item>Torre de Belém</li>
+                <li data-attraction-item>Mosteiro dos Jerónimos</li>
+                <li data-attraction-item>Castelo de São Jorge</li>
+                <li data-attraction-item>Praça do Comércio</li>
             </ul>
         </section>
 
+        <section id="counter-section" class="section-info">
+            <div class="section-heading">
+                <h2>Conta as tuas visitas</h2>
+            </div>
+            <p>Já sonhaste com quantas aventuras podes viver em Lisboa? Usa o contador!</p>
+            <div class="counter-display">
+                <span id="counter-value">0</span>
+            </div>
+            <div class="counter-controls">
+                <button type="button" onclick="incrementCounter()">Somar visita</button>
+                <button type="button" onclick="resetCounter()">Reiniciar</button>
+            </div>
+        </section>
     </main>
+
     <footer>
         <p>Universidade Lusófona © 2025</p>
     </footer>
+
+    <div id="emoji-confetti" aria-hidden="true">
+        <span class="confetti-piece" data-confetti>✨</span>
+        <span class="confetti-piece" data-confetti>🎉</span>
+        <span class="confetti-piece" data-confetti>🎊</span>
+        <span class="confetti-piece" data-confetti>⭐</span>
+        <span class="confetti-piece" data-confetti>🎂</span>
+        <span class="confetti-piece" data-confetti>✨</span>
+        <span class="confetti-piece" data-confetti>🎉</span>
+        <span class="confetti-piece" data-confetti>🎊</span>
+        <span class="confetti-piece" data-confetti>⭐</span>
+        <span class="confetti-piece" data-confetti>🎂</span>
+        <span class="confetti-piece" data-confetti>✨</span>
+        <span class="confetti-piece" data-confetti>🎉</span>
+        <span class="confetti-piece" data-confetti>🎊</span>
+        <span class="confetti-piece" data-confetti>⭐</span>
+        <span class="confetti-piece" data-confetti>🎂</span>
+        <span class="confetti-piece" data-confetti>✨</span>
+        <span class="confetti-piece" data-confetti>🎉</span>
+        <span class="confetti-piece" data-confetti>🎊</span>
+        <span class="confetti-piece" data-confetti>⭐</span>
+        <span class="confetti-piece" data-confetti>🎂</span>
+    </div>
+
     <script src="scripts/main.js"></script>
 </body>
 

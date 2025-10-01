@@ -600,3 +600,192 @@ b {
   color: dodgerblue;
 }
 
+/* Lab 4 interactive styles */
+.lab4-page main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.lab4-page .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.lab4-page .header-top h1 {
+    font-size: 2rem;
+}
+
+.lab4-page .hamburguer {
+    border: none;
+    background: #f3722c;
+    color: white;
+    font-size: 1.4rem;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lab4-page .hamburguer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+}
+
+.lab4-page .tagline {
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #f1f1f1;
+}
+
+.lab4-page .hero {
+    background: linear-gradient(135deg, #1c1717, #403b3b);
+    color: white;
+    border-radius: 18px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    align-items: center;
+}
+
+.lab4-page .hero-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.lab4-page .hero-text p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.lab4-page .hero-figure {
+    margin: 0;
+}
+
+.lab4-page .hero-figure img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+}
+
+.lab4-page .section-info {
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.lab4-page .section-info .section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lab4-page .section-info .section-heading h2 {
+    font-size: 1.6rem;
+}
+
+.lab4-page .section-info p {
+    line-height: 1.6;
+}
+
+.lab4-page #fact-button,
+.lab4-page .section-info button {
+    align-self: flex-start;
+    border: none;
+    background: #577590;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lab4-page #fact-button:hover,
+.lab4-page .section-info button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+}
+
+.lab4-page .attractions {
+    display: grid;
+    gap: 10px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.lab4-page .attractions li {
+    padding: 12px 16px;
+    background: rgba(87, 117, 144, 0.1);
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.lab4-page .counter-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(87, 117, 144, 0.15);
+    border-radius: 16px;
+    padding: 24px;
+    width: 160px;
+}
+
+.lab4-page #counter-value {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #1c1717;
+}
+
+.lab4-page .counter-controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lab4-page #emoji-confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    display: block;
+}
+
+.lab4-page .confetti-piece {
+    position: fixed;
+    opacity: 0;
+    font-size: 1.5rem;
+    transition: transform 0.9s ease, opacity 0.9s ease;
+    z-index: 2000;
+}
+
+@media (max-width: 768px) {
+    .lab4-page main {
+        padding: 30px 16px 60px;
+    }
+
+    .lab4-page .hero {
+        padding: 24px;
+    }
+
+    .lab4-page .hamburguer {
+        font-size: 1.2rem;
+        padding: 8px 14px;
+    }
+}
