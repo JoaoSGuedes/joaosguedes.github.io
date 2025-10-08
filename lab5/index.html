@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <!-- 1. Passa por aqui! -->
+<div class="row line">
+<span class="num">1.Passa por aqui!</span>
+</div>
+
+<br>
+<br>
+
+<!-- 2. Pinta-me! -->
+<div class="row line">
+<span class="num">2.</span>
+<span id="paintText" class="red">Pinta-me!</span>
+<button class="btn" data-color="red">Red</button>
+<button class="btn" data-color="green">Green</button>
+<button class="btn" data-color="blue">Blue</button>
+</div>
+
+
+<br>
+<br>
+
+<!-- 3. Experimenta escrever... -->
+<div class="row line">
+<span class="num">3.</span>
+<span>Experimenta escrever...</span>
+<input class="field" type="text" />
+</div>
+
+<br>
+<br>
+
+
+<!-- 4. Escolha uma cor em inglês -->
+<div class="row line">
+<span class="num">4.</span>
+<label for="colorSelect">Escolha uma cor em inglês:</label>
+<select id="colorSelect" class="pill">
+  <option value="white">White</option>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+</select>
+</div>
+
+<br>
+<br>
+
+
+<!-- 5. Conta! -->
+<div class="row line">
+<span class="num">5.</span>
+<button id="countBtn" class="counter-btn">Conta!</button>
+<span id="countValue">33</span>
+</div>
+
+<br>
+<br>
+
+
+<!-- 6. Nome e idade -->
+<div class="row line">
+<span class="num">6.</span>
+<form id="nameAgeForm">
+  <input id="nameInput" class="pill" type="text" placeholder="Insira o seu nome" required/>
+  <input id="ageInput" class="pill" type="number" placeholder="Insira a sua idade" required/>
+  <input type="submit" class="submit" value="Submeter"/>
+</form>
+<p id="nameAgeMsg"></p>
+</div>
+
+<br>
+<br>
+
+
+<!-- 7. Automatic counter -->
+<div class="row line">
+<span class="num">7. Automatic Counter</span>
+<span id="countValue">0</span>
+</div>
+
+
+
+
+
+
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
