@@ -93,7 +93,7 @@ submitNameAge.onclick = function() {
   } else {
     nameAgeMsg.textContent = '';
   }
-};
+};*/
 
 // 7. Automatic counter
 const autoCountValue = document.querySelectorAll('#countValue')[1];
@@ -102,7 +102,7 @@ let autoCount = 0;
 setInterval(() => {
   autoCount++;
   autoCountValue.textContent = autoCount;
-}, 1000);*/
+}, 1000);
 
 // 6. Nome e idade (formulário)
 const nameAgeForm = document.getElementById('nameAgeForm');
