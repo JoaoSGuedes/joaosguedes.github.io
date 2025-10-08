@@ -65,9 +65,16 @@ document.getElementById('colorSelect').onchange = function() {
 const countBtn = document.getElementById('countBtn');
 const countValue = document.getElementById('countValue');
 
+if (!localStorage.getItem('counter')) {
+  localStorage.setItem('counter', 0);
+}
+countValue.textContent = localStorage.getItem('counter');
+
 countBtn.onclick = function() {
-  let current = parseInt(countValue.textContent, 10) || 0;
-  countValue.textContent = current + 1;
+  let current = parseInt(localStorage.getItem('counter'), 10) || 0;
+  current++;
+  localStorage.setItem('counter', current);
+  countValue.textContent = current;
 };
 
 
@@ -99,10 +106,11 @@ submitNameAge.onclick = function() {
 const autoCountValue = document.querySelectorAll('#countValue')[1];
 let autoCount = 0;
 
-setInterval(() => {
+function count() {
   autoCount++;
   autoCountValue.textContent = autoCount;
-}, 1000);
+}
+setInterval(count, 1000);
 
 // 6. Nome e idade (formulário)
 const nameAgeForm = document.getElementById('nameAgeForm');
