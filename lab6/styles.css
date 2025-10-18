@@ -149,7 +149,7 @@ footer {
 }
 
 /* Layout principal */
-#lista-produtos {
+.lista-produtos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -157,6 +157,17 @@ footer {
   padding: 30px;
   background-color: #f8f8f8;
 }
+
+#cesto-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background-color: #f8f8f8;
+}
+
+#cesto-lista .produto { width: 250px; }
 
 /* Cada produto como card */
 .produto {
