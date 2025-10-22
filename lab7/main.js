@@ -1,11 +1,18 @@
 
 const API_URL = 'https://deisishop.pythonanywhere.com/products/';
 const CATEGORIES_URL = 'https://deisishop.pythonanywhere.com/categories/';
+const BUY_URL = 'https://deisishop.pythonanywhere.com/buy/';
 const STORAGE_KEY = 'produtos-selecionados';
 let produtosCache = [];
 let categoriaAtiva = '';
 let ordenacaoAtiva = '';
 let termoPesquisa = '';
+const checkoutEstado = {
+    estudante: false,
+    cupao: '',
+    nome: '',
+    mensagem: ''
+};
 
 
 function initCart() {
@@ -245,6 +252,154 @@ function renderProdutosFiltrados() {
     carregarProdutos(lista);
 }
 
+function renderCheckoutSection(cestoSec, total, lista) {
+    const formatoEUR = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' });
+    const checkoutSec = document.createElement('section');
+    checkoutSec.className = 'checkout';
+    checkoutSec.setAttribute('aria-label', 'Secção de checkout');
+
+    const totalEl = document.createElement('p');
+    totalEl.className = 'checkout-total';
+    const textoTotal = formatoEUR.format(total);
+    totalEl.textContent = `Custo total: ${textoTotal}`;
+
+    const estudanteWrap = document.createElement('label');
+    estudanteWrap.htmlFor = 'checkout-estudante';
+    estudanteWrap.textContent = 'És estudante do DEISI? ';
+
+    const estudanteInput = document.createElement('input');
+    estudanteInput.type = 'checkbox';
+    estudanteInput.id = 'checkout-estudante';
+    estudanteInput.checked = checkoutEstado.estudante;
+    estudanteInput.addEventListener('change', () => {
+        checkoutEstado.estudante = estudanteInput.checked;
+    });
+    estudanteWrap.appendChild(estudanteInput);
+
+    const nomeLabel = document.createElement('label');
+    nomeLabel.setAttribute('for', 'checkout-nome');
+    nomeLabel.textContent = ' Nome: ';
+
+    const nomeInput = document.createElement('input');
+    nomeInput.type = 'text';
+    nomeInput.id = 'checkout-nome';
+    nomeInput.placeholder = 'o seu nome';
+    nomeInput.value = checkoutEstado.nome;
+    nomeInput.addEventListener('input', () => {
+        checkoutEstado.nome = nomeInput.value;
+    });
+
+    const cupaoLabel = document.createElement('label');
+    cupaoLabel.setAttribute('for', 'checkout-cupao');
+    cupaoLabel.textContent = ' Cupão de desconto: ';
+
+    const cupaoInput = document.createElement('input');
+    cupaoInput.type = 'text';
+    cupaoInput.id = 'checkout-cupao';
+    cupaoInput.placeholder = 'ex.: black-friday';
+    cupaoInput.value = checkoutEstado.cupao;
+    cupaoInput.addEventListener('input', () => {
+        checkoutEstado.cupao = cupaoInput.value;
+    });
+
+    const btnComprar = document.createElement('button');
+    btnComprar.type = 'button';
+    btnComprar.textContent = 'Comprar';
+    btnComprar.disabled = lista.length === 0;
+
+    const resultadoEl = document.createElement('p');
+    resultadoEl.className = 'checkout-resultado';
+    resultadoEl.textContent = checkoutEstado.mensagem;
+
+    btnComprar.addEventListener('click', () => {
+        processarCompra(lista, total, totalEl, resultadoEl, btnComprar);
+    });
+
+    checkoutSec.appendChild(totalEl);
+    checkoutSec.appendChild(estudanteWrap);
+    checkoutSec.appendChild(document.createElement('br'));
+    checkoutSec.appendChild(nomeLabel);
+    checkoutSec.appendChild(nomeInput);
+    checkoutSec.appendChild(document.createElement('br'));
+    checkoutSec.appendChild(cupaoLabel);
+    checkoutSec.appendChild(cupaoInput);
+    checkoutSec.appendChild(document.createElement('br'));
+    checkoutSec.appendChild(btnComprar);
+    checkoutSec.appendChild(resultadoEl);
+
+    cestoSec.appendChild(checkoutSec);
+}
+
+async function processarCompra(lista, totalOriginal, totalEl, resultadoEl, botao) {
+    if (!Array.isArray(lista) || lista.length === 0) {
+        resultadoEl.textContent = 'Adicione produtos ao cesto antes de comprar.';
+        checkoutEstado.mensagem = resultadoEl.textContent;
+        return;
+    }
+
+    const produtosIds = lista.map((produto) => produto.id);
+    const payload = {
+        products: produtosIds,
+        student: Boolean(checkoutEstado.estudante),
+        coupon: checkoutEstado.cupao || '',
+        name: checkoutEstado.nome || 'Cliente DEISI'
+    };
+
+    resultadoEl.textContent = 'A calcular o total...';
+    checkoutEstado.mensagem = resultadoEl.textContent;
+    botao.disabled = true;
+
+    try {
+        const resposta = await fetch(BUY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const dados = await resposta.json();
+        if (!resposta.ok || dados.error) {
+            const mensagemErro = dados?.error || 'Não foi possível concluir a compra.';
+            resultadoEl.textContent = mensagemErro;
+            checkoutEstado.mensagem = mensagemErro;
+            return;
+        }
+
+        const formatoEUR = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' });
+        const totalOriginalTexto = formatoEUR.format(totalOriginal);
+        const totalNumero = Number(dados.totalCost);
+        const textoTotal = Number.isNaN(totalNumero) ? dados.totalCost : formatoEUR.format(totalNumero);
+        totalEl.textContent = `Custo total: ${textoTotal}`;
+
+        const houveDesconto = textoTotal !== totalOriginalTexto;
+        let textoResultado = houveDesconto
+            ? `Total com desconto: ${textoTotal} (antes ${totalOriginalTexto}).`
+            : `Total final: ${textoTotal}.`;
+
+        if (dados.reference) {
+            textoResultado += ` Referência: ${dados.reference}.`;
+        }
+
+        if (dados.message) {
+            textoResultado += ` ${dados.message}`;
+        }
+
+        resultadoEl.textContent = textoResultado;
+        checkoutEstado.mensagem = textoResultado;
+
+        // compra concluída, podemos limpar o cesto
+        setCart([]);
+        atualizaCesto();
+        renderCestoCount();
+    } catch (erro) {
+        console.error(erro);
+        const falha = 'Ocorreu um erro na ligação. Tente novamente.';
+        resultadoEl.textContent = falha;
+        checkoutEstado.mensagem = falha;
+    } finally {
+        botao.disabled = false;
+    }
+}
+
 
 function carregarProdutos(lista) {
     const container = document.querySelector('#lista-produtos');
@@ -338,6 +493,7 @@ function atualizaCesto() {
         const p = document.createElement('p');
         p.textContent = 'O cesto está vazio.';
         cestoSec.appendChild(p);
+        renderCheckoutSection(cestoSec, 0, lista);
         return;
     }
 
@@ -353,11 +509,7 @@ function atualizaCesto() {
         total += Number(produto.price) || 0;
     }
 
-    const formatoEUR = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' });
-    const pTotal = document.createElement('p');
-    pTotal.textContent = `Total: ${formatoEUR.format(total)}`;
-    pTotal.style.fontWeight = 'bold';
-    cestoSec.appendChild(pTotal);
+    renderCheckoutSection(cestoSec, total, lista);
 }
 
 
