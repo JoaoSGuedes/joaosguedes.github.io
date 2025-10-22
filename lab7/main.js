@@ -1,6 +1,7 @@
 
-
+const API_URL = 'https://deisishop.pythonanywhere.com/products/';
 const STORAGE_KEY = 'produtos-selecionados';
+
 
 function initCart() {
     if (!localStorage.getItem(STORAGE_KEY)) {
@@ -50,15 +51,44 @@ function renderCestoCount() {
     }
 }
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     initCart();
     renderCestoCount();
     atualizaCesto();
-    carregarProdutos(produtos);
+    carregarProdutosDaApi();
 });
+
+async function carregarProdutosDaApi() {
+    const container = document.querySelector('#lista-produtos');
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = '';
+
+    const indicador = document.createElement('p');
+    indicador.className = 'loading';
+    indicador.textContent = 'A carregar produtos...';
+    container.appendChild(indicador);
+
+    try {
+        const resposta = await fetch(API_URL);
+        if (!resposta.ok) {
+            throw new Error(`Falha ao obter produtos: ${resposta.status}`);
+        }
+
+        const lista = await resposta.json();
+        container.innerHTML = '';
+        carregarProdutos(lista);
+    } catch (erro) {
+        container.innerHTML = '';
+        const mensagemErro = document.createElement('p');
+        mensagemErro.className = 'erro';
+        mensagemErro.textContent = 'Não foi possível carregar os produtos. Tente novamente mais tarde.';
+        container.appendChild(mensagemErro);
+        console.error(erro);
+    }
+}
 
 
 
@@ -68,6 +98,7 @@ function carregarProdutos(lista) {
         return;
     }
 
+    container.innerHTML = '';
     container.setAttribute('role', 'list');
 
     /*
@@ -115,7 +146,9 @@ function criarProduto(produto) {
 
     const rating = document.createElement('p');
     rating.className = 'rating';
-    rating.textContent = `★ ${produto.rating.rate} (${produto.rating.count})`;
+    const rate = produto.rating?.rate ?? '?';
+    const count = produto.rating?.count ?? 0;
+    rating.textContent = `★ ${rate} (${count})`;
 
     const btn = document.createElement('button');
     btn.type = 'button';
