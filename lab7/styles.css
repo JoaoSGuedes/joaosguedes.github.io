@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    z-index: 1001;
+    top: 0;
+
+    h2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
+    a:hover {
+        background-color: grey;
+    }
+
+    a:active {
+        background-color: darkgrey;
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        gap: 30px;
+        margin-left: auto;
+        margin-right: 20px;
+
+        li {
+            display: inline;
+
+
+        }
+    }
+}
+
+body {
+    background-color: #edecec;
+}
+
+img {
+    width: 300px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.section {
+    height: 100vh;
+    scroll-margin-top: 47.5px;
+
+    @media (max-width: 768px){
+        scroll-margin-top: 179.5px;
+    }
+
+}
+
+.section-info {
+    background-color: #939393;
+    padding: 10px;
+}
+
+
+
+
+/* Hamburger Menu Styles */
+.hamburguer {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+    }
+
+    .header-top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav {
+        display: none;
+    }
+
+    header:hover nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: black;
+
+        a {
+            flex-direction: column;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        ul {
+            flex-direction: column;
+
+            li {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    }
+
+
+    .hamburguer {
+        display: block;
+    }
+}
+
+/* Layout principal */
+.lista-produtos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background-color: #f8f8f8;
+}
+
+#cesto-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background-color: #f8f8f8;
+}
+
+#cesto-lista .produto { width: 250px; }
+
+/* Cada produto como card */
+.produto {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Imagem do produto */
+.produto img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+/* Título */
+.produto h3 {
+  font-size: 1.1em;
+  margin: 10px 0 5px 0;
+}
+
+/* Descrição */
+.produto .descricao {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+.produto:hover .descricao {
+  -webkit-line-clamp: unset; /* mostra tudo ao hover */
+}
+*/
+
+/* Preço */
+.produto .preco {
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Rating */
+.produto .rating {
+  color: #f39c12;
+  font-size: 0.9em;
+}
+
+/* Botão */
+.produto button {
+  margin-top: auto;
+  background-color: #2d89ef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.produto button:hover {
+  background-color: #1b5fbf;
+}
