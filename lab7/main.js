@@ -5,6 +5,7 @@ const STORAGE_KEY = 'produtos-selecionados';
 let produtosCache = [];
 let categoriaAtiva = '';
 let ordenacaoAtiva = '';
+let termoPesquisa = '';
 
 
 function initCart() {
@@ -123,10 +124,26 @@ function setupFiltros() {
         renderProdutosFiltrados();
     });
 
+    const labelPesquisa = document.createElement('label');
+    labelPesquisa.setAttribute('for', 'pesquisa-produto');
+    labelPesquisa.textContent = ' Procurar: ';
+
+    const inputPesquisa = document.createElement('input');
+    inputPesquisa.type = 'search';
+    inputPesquisa.id = 'pesquisa-produto';
+    inputPesquisa.placeholder = 'pesquise por produto';
+
+    inputPesquisa.addEventListener('input', () => {
+        termoPesquisa = inputPesquisa.value.trim().toLowerCase();
+        renderProdutosFiltrados();
+    });
+
     barraFiltros.appendChild(labelCategoria);
     barraFiltros.appendChild(selectCategoria);
     barraFiltros.appendChild(labelOrdenacao);
     barraFiltros.appendChild(selectOrdenacao);
+    barraFiltros.appendChild(labelPesquisa);
+    barraFiltros.appendChild(inputPesquisa);
 
     carregarCategorias(selectCategoria);
 }
@@ -192,6 +209,13 @@ function renderProdutosFiltrados() {
     let lista = Array.isArray(produtosCache) ? [...produtosCache] : [];
     if (categoriaAtiva) {
         lista = lista.filter((produto) => produto.category === categoriaAtiva);
+    }
+
+    if (termoPesquisa) {
+        lista = lista.filter((produto) => {
+            const titulo = String(produto.title || '').toLowerCase();
+            return titulo.includes(termoPesquisa);
+        });
     }
 
     if (!Array.isArray(lista) || lista.length === 0) {
